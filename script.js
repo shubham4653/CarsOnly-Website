@@ -3,6 +3,38 @@ const userEmail = localStorage.getItem("userEmail");
 const loginLink = document.getElementById("loginLink");
 const logoutLink = document.getElementById("logoutLink");
 
+document.getElementById("quizForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const answers = ["q1", "q2", "q3"].map(q =>
+    document.querySelector(`input[name="${q}"]:checked`)?.value
+  );
+
+  if (answers.includes(undefined)) {
+    document.getElementById("quizResult").innerHTML = `<p>Please answer all questions!</p>`;
+    return;
+  }
+
+  const counts = { sporty: 0, luxury: 0, rugged: 0 };
+  answers.forEach(answer => counts[answer]++);
+
+  let result = "";
+  if (counts.sporty >= 2) {
+    result = "🏎️ You’re a Lamborghini Huracán – bold, fast, and built for the thrill!";
+  } else if (counts.luxury >= 2) {
+    result = "🚘 You’re a Mercedes-Benz S-Class – refined, smooth, and elegant.";
+  } else {
+    result = "🚙 You’re a Jeep Wrangler – adventurous, tough, and ready for any terrain.";
+  }
+
+  document.getElementById("quizResult").innerHTML = `
+    <div class="result-box">
+      <h3>Your Match:</h3>
+      <p>${result}</p>
+    </div>
+  `;
+});
+
 if (userEmail) {
   if (loginLink) {
     loginLink.style.display = "none";
@@ -94,6 +126,7 @@ function setupCarousel(carouselClass, slideClass, prevBtnClass, nextBtnClass) {
 
     updateIndicators();
 }
+
 
 // Initialize carousels
 setupCarousel('carousel', 'slide', 'prev-btn', 'next-btn');
