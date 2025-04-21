@@ -1,186 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Contact Us - Cars Only</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us - Cars Only</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">CARS ONLY</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="gallery/gallery.html">Gallery</a></li>
-            <li><a href="suggestion.html">Suggestion</a></li>
-            <li><a href="contact.html" class="active">Contact</a></li>
+  <nav class="navbar">
+    <div class="logo">CARS ONLY</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="gallery/gallery.html">Gallery</a></li>
+      <li><a href="suggestion.html">Suggestion</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="contact-us" style="min-height: 80vh; padding: 40px 20px;">
+    <h2>Contact Us</h2>
+    <p>We would love to hear from you! Please fill out the form below or use the contact information.</p>
+
+    <div class="contact-container" style="max-width: 600px; margin: 0 auto; text-align: left;">
+      <form id="contactForm" style="display: flex; flex-direction: column; gap: 15px;">
+        <label for="name" style="color: white;">Name</label>
+        <input type="text" id="name" name="name" required style="padding: 10px; border-radius: 5px; border: none;" />
+
+        <label for="email" style="color: white;">Email</label>
+        <input type="email" id="email" name="email" required style="padding: 10px; border-radius: 5px; border: none;" />
+
+        <label for="message" style="color: white;">Message</label>
+        <textarea id="message" name="message" rows="5" required style="padding: 10px; border-radius: 5px; border: none;"></textarea>
+
+        <button type="submit" class="btn" style="align-self: flex-start;">Send Message</button>
+      </form>
+
+      <section style="margin-top: 40px; color: white;">
+        <h3>Contact Info</h3>
+        <ul style="list-style: none; padding-left: 0;">
+          <li><a href="tel:+01234567890" style="color: orange; text-decoration: none;">📞 +01 2 3456 7890</a></li>
+          <li><a href="mailto:info@carsonly.com" style="color: orange; text-decoration: none;">📧 info@carsonly.com</a></li>
+          <li><address style="color: orange;">📍 VIT Chennai</address></li>
         </ul>
-    </nav>
+      </section>
+    </div>
+  </main>
 
-    <main class="contact-us" style="min-height: 80vh; padding: 40px 20px;">
-        <h2>Contact Us</h2>
-        <p>We would love to hear from you! Please fill out the form below or use the contact information.</p>
+  <footer class="footer">
+    <!-- Footer content here -->
+  </footer>
 
-        <div class="contact-container" style="max-width: 600px; margin: 0 auto; text-align: left;">
-            <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
-                <label for="name" style="color: white;">Name</label>
-                <input type="text" id="name" name="name" required style="padding: 10px; border-radius: 5px; border: none;"/>
+  <!-- Firebase SDKs -->
+  <script type="module">
+    // Import the functions you need from the SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
 
-                <label for="email" style="color: white;">Email</label>
-                <input type="email" id="email" name="email" required style="padding: 10px; border-radius: 5px; border: none;"/>
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAqelgljkeHwKbep-nHujuX33C_udxT2II",
+      authDomain: "webpro-ffdc7.firebaseapp.com",
+      databaseURL: "https://webpro-ffdc7-default-rtdb.firebaseio.com",
+      projectId: "webpro-ffdc7",
+      storageBucket: "webpro-ffdc7.appspot.com",
+      messagingSenderId: "833630676824",
+      appId: "1:833630676824:web:5a7cc1db466f59d975672d",
+      measurementId: "G-ZT2PJEM476"
+    };
 
-                <label for="message" style="color: white;">Message</label>
-                <textarea id="message" name="message" rows="5" required style="padding: 10px; border-radius: 5px; border: none;"></textarea>
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
 
-                <button type="submit" class="btn" style="align-self: flex-start;">Send Message</button>
-            </form>
+    // Handle form submission
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-            <section style="margin-top: 40px; color: white;">
-                <h3>Contact Info</h3>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li>
-                        <a href="tel:+01234567890" class="footer-link" style="color: var(--international-orange-engineering); text-decoration: none;">
-                            <span class="material-symbols-rounded">call</span>
-                            +01 2 3456 7890
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mailto:info@carsonly.com" class="footer-link" style="color: var(--international-orange-engineering); text-decoration: none;">
-                            <span class="material-symbols-rounded">m</span>
-                            info@carsonly.com
-                        </a>
-                    </li>
-                    <li>
-                        <address class="footer-link address" style="color: var(--international-orange-engineering);">
-                            <span class="material-symbols-rounded">l</span>
-                            VIT Chennai
-                        </address>
-                    </li>
-                </ul>
-            </section>
-        </div>
-    </main>
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
 
-    <footer class="footer">
-
-        <div class="footer-top section">
-          <div class="container">
-    
-            <div class="footer-brand">
-    
-              <a href="#" class="logo">
-                <img src="./assets/images/logo.png" width="128" height="63" alt="autofix home">
-              </a>
-    
-              <p class="footer-text"><h3>
-                Sports cars are high-performance vehicles designed for speed, agility, and an exhilarating driving experience. 🚗💨
-              </h3>
-            </p>
-    
-              <ul class="social-list">
-    
-                <li>
-                  <a href="#" class="social-link">
-                    <img src="assets/images/facebook.svg" alt="facebook">
-                  </a>
-                </li>
-    
-                <li>
-                  <a href="#" class="social-link">
-                    <img src="assets/images/instagram.svg" alt="instagram">
-                  </a>
-                </li>
-    
-                <li>
-                  <a href="#" class="social-link">
-                    <img src="assets/images/twitter.svg" alt="twitter">
-                  </a>
-                </li>
-    
-              </ul>
-    
-            </div>
-    
-            <!-- <ul class="footer-list">
-    
-              <li>
-                <p class="h3">Opening Hours</p>
-              </li>
-    
-              <li>
-                <p class="p">Monday – Saturday</p>
-    
-                <span class="span">12.00 – 14.45</span>
-              </li>
-    
-              <li>
-                <p class="p">Sunday – Thursday</p>
-    
-                <span class="span">17.30 – 00.00</span>
-              </li>
-    
-              <li>
-                <p class="p">Friday – Saturday</p>
-    
-                <span class="span">12.00 – 14.45</span>
-              </li>
-    
-            </ul> -->
-    
-            <ul class="footer-list">
-    
-              <li>
-                <p class="h3">Contact Info</p>
-              </li>
-    
-              <li>
-                <a href="tel:+01234567890" class="footer-link">
-                  <span class="material-symbols-rounded">call</span>
-    
-                  <span class="span">+01 2 3456 7890</span>
-                </a>
-              </li>
-    
-              <li>
-                <a href="mailto:info@carsonly.com" class="footer-link">
-                  <span class="material-symbols-rounded">m</span>
-    
-                  <span class="span">info@carsonly.com</span>
-                </a>
-              </li>
-    
-              <li>
-                <address class="footer-link address">
-                  <span class="material-symbols-rounded">l</span>
-    
-                  <span class="span">VIT Chennai</span>
-                </address>
-              </li>
-    
-            </ul>
-    
-          </div>
-    
-          <img src="./assets/images/footer-shape-3.png" width="637" height="173" loading="lazy" alt="Shape"
-            class="shape shape-3 move-anim">
-    
-        </div>
-    
-        <div class="footer-bottom">
-          <div class="container">
-    
-            <p class="copyright">Made by Ananti & Shubham</p>
-    
-            <img src="./assets/images/footer-shape-2.png" width="778" height="335" loading="lazy" alt="Shape"
-              class="shape shape-2">
-    
-            <img src="images/footer1.png" width="805" height="652" loading="lazy" alt="Red Car"
-              class="shape shape-1 move-anim">
-    
-          </div>
-        </div>
-    
-      </footer>
+      if (name && email && message) {
+        push(ref(database, "contacts"), {
+          name: name,
+          email: email,
+          message: message,
+          timestamp: new Date().toISOString()
+        }).then(() => {
+          alert("Message sent successfully!");
+          document.getElementById("contactForm").reset();
+        }).catch((error) => {
+          console.error("Error saving data:", error);
+          alert("Something went wrong. Please try again.");
+        });
+      }
+    });
+  </script>
 </body>
 </html>
