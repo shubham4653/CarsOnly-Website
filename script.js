@@ -3,6 +3,7 @@ const userEmail = localStorage.getItem("userEmail");
 const loginLink = document.getElementById("loginLink");
 const logoutLink = document.getElementById("logoutLink");
 
+
 if (userEmail) {
   if (loginLink) {
     loginLink.style.display = "none";
@@ -94,6 +95,7 @@ function setupCarousel(carouselClass, slideClass, prevBtnClass, nextBtnClass) {
 
     updateIndicators();
 }
+
 
 // Initialize carousels
 setupCarousel('carousel', 'slide', 'prev-btn', 'next-btn');
