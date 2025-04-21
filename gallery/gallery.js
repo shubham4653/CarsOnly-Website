@@ -62,33 +62,51 @@ function displayImages(images) {
         gallery.appendChild(carCard);
     });
 }
-
 function fetchSuggestions() {
     const suggestionsRef = firebase.database().ref("suggestions");
 
     suggestionsRef.once('value')
         .then(snapshot => {
             const suggestions = snapshot.val();
-            console.log("Snapshot received:", suggestions);  // Add this to check
+            console.log("Snapshot received:", suggestions);
 
             if (suggestions) {
+                // Check if we are getting the expected data structure
                 Object.keys(suggestions).forEach(key => {
                     const suggestion = suggestions[key];
-                    const base64Image = suggestion.imageBase64;  // <-- fixed key
+                    console.log("Processing suggestion:", suggestion);  // Debugging line
+
+                    const base64Image = suggestion.imageBase64;
                     const userName = suggestion.userName || "Anonymous";
+                    const text = suggestion.description || "No suggestion provided";
 
                     const carCard = document.createElement("div");
-                    carCard.classList.add("car-card");
+                    carCard.classList.add("car-card", "flip-card");
 
                     carCard.innerHTML = `
-                        <img src="${base64Image}" alt="User Submitted Image">
-                        <div class="car-info">
-                            Submitted by ${userName}
-                            <span class="like-btn">🤍</span>
+                        <div class="flip-inner">
+                            <div class="flip-front">
+                                <img src="${base64Image}" alt="User Submitted Image">
+                                <div class="car-info">
+                                    Submitted by ${userName}
+                                    <span class="like-btn">🤍</span>
+                                </div>
+                            </div>
+                            <div class="flip-back">
+                                <p>${text}</p>
+                            </div>
                         </div>
                     `;
 
-                    document.getElementById("gallery").appendChild(carCard);
+                    // Add flipping functionality on click
+                    carCard.addEventListener("click", (e) => {
+                        if (!e.target.classList.contains("like-btn")) {
+                            carCard.classList.toggle("flipped");
+                        }
+                    });
+                    gallery.appendChild(carCard);
+                    console.log("Card added to gallery:", carCard); // Debugging line
+
                 });
             } else {
                 console.log("No suggestions found.");
@@ -100,6 +118,8 @@ function fetchSuggestions() {
 }
 
 
+
+
 // Call fetchSuggestions to display images from Firebase
 fetchSuggestions();
 
@@ -108,8 +128,17 @@ document.getElementById("gallery").addEventListener("click", function(event) {
     if (event.target.classList.contains("like-btn")) {
         toggleLike(event.target);
     } else if (event.target.tagName === "IMG") {
-        openModal(event.target.getAttribute("data-full"));
+        const carCard = event.target.closest('.car-card');
+        
+        // If it's a user-submitted image (base64), flip it
+        if (event.target.src.startsWith("data:image")) {
+            carCard.classList.toggle("flipped");
+        } else {
+            // Otherwise open Unsplash image in modal
+            openModal(event.target.getAttribute("data-full"));
+        }
     }
+    
 });
 
 // Like toggle function

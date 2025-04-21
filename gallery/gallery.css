@@ -255,3 +255,89 @@ body.slideshow-active {
 }
 
 
+.car-card {
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  .car-card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .card-front {
+    background: #111;
+  }
+  
+  .card-back {
+    background: #1c1c1c;
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .flip-card {
+    height: 200px; /* or whatever fits best */
+}
+
+  .flip-card {
+    position: relative; /* Ensure proper stacking context */
+    width: 100%;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out; /* Smooth transition for flipping */
+}
+
+.flip-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.flip-card.flipped .flip-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+.flip-front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+.flip-back {
+    background-color: #111;
+    color: #fff;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+  
