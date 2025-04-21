@@ -25,6 +25,32 @@ let slideshowInterval;
 let imagesList = [];
 let currentSlideshowIndex = 0;
 
+const userEmail = localStorage.getItem("userEmail");
+
+const loginLink = document.getElementById("loginLink");
+const logoutLink = document.getElementById("logoutLink");
+
+if (userEmail) {
+  if (loginLink) {
+    loginLink.style.display = "none";
+  }
+  if (logoutLink) {
+    logoutLink.style.display = "inline";
+    logoutLink.textContent = "Logout";
+    logoutLink.addEventListener("click", function(e) {
+      e.preventDefault();
+      localStorage.removeItem("userEmail");
+      window.location.href = "signupandlogin.html";
+    });
+  }
+} else {
+  if (loginLink) {
+    loginLink.style.display = "inline";
+  }
+  if (logoutLink) {
+    logoutLink.style.display = "none";
+  }
+}
 async function fetchCars() {
     if (isFetching) return;
     isFetching = true;
