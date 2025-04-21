@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: rgb(252, 250, 250);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: url('bg3.jpg') no-repeat center center/cover;
+        }
+        
+        .container {
+            display: flex;
+            margin-bottom:300px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            max-width: 900px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+        }
+        
+        .text-content {
+            padding-left: 20px;
+        }
+        
+        h1 {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Glowing effect for paragraph text */
+        p {
+            font-size: 16px;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            word-break: break-word;
+        }
+
+
+.typing-text span {
+    white-space: nowrap;
+}
+
+        .typing-text {
+            font-size: 16px;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #fff; /* Cursor effect */
+            animation: blink 0.7s step-end infinite;
+        }
+
+        /* Blinking cursor animation */
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-content">
+            <h1>Who Are We?</h1>
+            <p id="typingText" class="typing-text"></p>
+        </div>
+    </div>
+
+    <script>
+        const text = "With the continuous evolution of automobile technology, car enthusiasts are always on the lookout for platforms where they can exchange insights, stay informed about the latest car models, and actively contribute their opinions on top-rated vehicles. Cars Only Website is designed to create an engaging and interactive digital space that caters specifically to car lovers. This website allows users to explore the most popular and highly-rated cars, submit their own recommendations for vehicles they admire, and participate in discussions with like-minded individuals.";
+    
+        const words = text.split(" "); // Split text into words
+        let index = 0;
+        let lineLength = 0; // Track line length
+        
+        function typeEffect() {
+    if (index < words.length) {
+        let typingElement = document.getElementById("typingText");
+        let word = words[index];
+
+        // Prevent "for", "and", "by", etc. from appearing at the start of a new line
+        let smallWords = ["for", "and", "by", "a", "of", "to", "in"];
+        if (index > 0 && smallWords.includes(word.toLowerCase())) {
+            word = "&nbsp;" + word; // Add a non-breaking space before the small word
+        }
+
+        typingElement.innerHTML += word + " ";
+        index++;
+        lineLength += word.length;
+
+        if (index % 12 === 0 || lineLength >= 80) {
+            typingElement.innerHTML += "<br>";
+            lineLength = 0; 
+        }
+
+        setTimeout(typeEffect, 50);
+    } else {
+        document.getElementById("typingText").style.borderRight = "none";
+    }
+}
+    
+        window.onload = typeEffect;
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+
+<!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+<!-- Firebase Realtime Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">CARS ONLY</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="gallery\gallery.html">Gallery</a></li>
+            <li><a href="suggestion.html">Suggestion</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a id="loginLink" href="signupandlogin.html">Login/Signup</a></li>
+            <li><a id="logoutLink" href="#" style="display:none;">Logout</a></li>
+
+        </ul>
+    </nav>
+
+    <header>
+
+        <div class="left">
+            <h1>CARS ONLY</h1>
+        </div>
+        <div class="author">
+            <h3>EXOTIC CAR GALLERY</h3>
+            <div >
+                <p>MOST</p>
+                <p>EXOTIC DESIGNS</p>
+            </div>
+            <div>
+                <p>PROJECT BY</p>
+                <p>ANANTI AND SHUBHAM</p>
+            </div>
+            <img src="code.png" alt="">
+        </div>
+    </header>
+    <div class="banner">
+        <div class="product">
+            <div class="soda" style="--url: url(text.png)">
+            </div>
+            <div class="soda" style="--url: url(text2.png)">
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Top 3 features this week</h1>
+    </div>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="slide">
+                <img src="images/product-1.png" alt="Image 1">
+            </div>
+            <div class="slide">
+                <img src="images/product-2.png" alt="Image 2">
+            </div>
+            <div class="slide">
+                <img src="images/product-3.png" alt="Image 3">
+            </div>
+        </div>
+        <button data-bs-target="#carousel" class="prev-btn">&#10094;</button>
+        <button data-bs-target="#carousel" class="next-btn">&#10095;</button>
+        <div class="carousel-description">
+            <h2>McLaren</h2>
+            <p>A yellow model of the McLaren P1 GTR is available as a 1:14 scale diecast model.The model has a start-stop LED driving light that turns on when the model starts moving and turns off when it stops.The model has a 2.4GHz transmitter for multiplayer operation.The model has a detailed interior and true to original paintwork</p>
+        </div>
+    </div>
+    <div class="carousel-container-two">
+        <div id="carousel-two" class="carousel-two">
+            <div class="slide-two">
+                <img src="images/porsche-removebg-preview.png" alt="Image 1">
+            </div>
+            <div class="slide-two">
+                <img src="images/porsche2-removebg-preview.png" alt="Image 2">
+            </div>
+            <div class="slide-two">
+                <img src="images/porsche3-removebg-preview.png" alt="Image 3">
+            </div>
+        </div>
+        <button data-bs-target="#carousel-two" class="prev-btn-two">&#10094;</button>
+        <button data-bs-target="#carousel-two" class="next-btn-two">&#10095;</button>
+        <div class="carousel-description-two">
+            <h2>Porsche-718 Cayman</h2>
+            <p>A Porsche 718 Cayman is a mid-engine, two-seater sports coupe known for its agile handling, powerful turbocharged flat-four engine, and classic Porsche design aesthetic, offering a thrilling driving experience with excellent performance while maintaining a relatively accessible price point compared to other Porsche models</p>
+        </div>
+    </div>
+    <div class="carousel-container-three">
+        <div class="carousel-three">
+            <div class="slide-three">
+                <img src="images/spyder1-removebg-preview.png" alt="Image 1">
+            </div>
+            <div class="slide-three">
+                <img src="images/spyder2-removebg-preview.png" alt="Image 2">
+            </div>
+            <div class="slide-three">
+                <img src="images/spyder3-removebg-preview.png" alt="Image 3">
+            </div>
+        </div>
+        <button data-bs-target="#carousel-three" class="prev-btn-three">&#10094;</button>
+        <button data-bs-target="#carousel-three" class="next-btn-three">&#10095;</button>
+        <div class="carousel-description-three">
+            <h2>Porsche 718 Spyder RTS</h2>
+            <p>The Porsche 718 Spyder RS is a raw, high-performance convertible, blending track-focused performance with the thrill of open-top driving. It is the last and most extreme version of the 718 series before Porsche transitions to electric sports cars.</p>
+        </div>
+    </div>
+
+   <!-- <div class="content-two">
+      <h1>All the time favourites</h1>
+  </div>
+  <div class="carousel-container-four">
+      <div class="carousel-four">
+          <div class="slide-four">
+              <img src="images/product-1.png" alt="Image 1">
+          </div>
+          <div class="slide-four">
+              <img src="images/product-2.png" alt="Image 2">
+          </div>
+          <div class="slide-four">
+              <img src="images/product-3.png" alt="Image 3">
+          </div>
+      </div>
+      <button data-bs-target="#carousel-four" class="prev-btn-four">&#10094;</button>
+      <button data-bs-target="#carousel-four" class="next-btn-four">&#10095;</button>
+      <div class="carousel-description-four">
+          <h2>McLaren</h2>
+          <p>A yellow model of the McLaren P1 GTR is available as a 1:14 scale diecast model.The model has a start-stop LED driving light that turns on when the model starts moving and turns off when it stops.The model has a 2.4GHz transmitter for multiplayer operation.The model has a detailed interior and true to original paintwork</p>
+      </div>
+  </div>
+  <div class="carousel-container-five">
+      <div id="carousel-five" class="carousel-five">
+          <div class="slide-five">
+              <img src="images/porsche-removebg-preview.png" alt="Image 1">
+          </div>
+          <div class="slide-five">
+              <img src="images/porsche2-removebg-preview.png" alt="Image 2">
+          </div>
+          <div class="slide-five">
+              <img src="images/porsche3-removebg-preview.png" alt="Image 3">
+          </div>
+      </div>
+      <button data-bs-target="#carousel-five" class="prev-btn-five">&#10094;</button>
+      <button data-bs-target="#carousel-five" class="next-btn-five">&#10095;</button>
+      <div class="carousel-description-five">
+          <h2>Porsche-718 Cayman</h2>
+          <p>A Porsche 718 Cayman is a mid-engine, two-seater sports coupe known for its agile handling, powerful turbocharged flat-four engine, and classic Porsche design aesthetic, offering a thrilling driving experience with excellent performance while maintaining a relatively accessible price point compared to other Porsche models</p>
+      </div>
+  </div>
+  <div class="carousel-container-six">
+      <div class="carousel-six">
+          <div class="slide-six">
+              <img src="images/spyder1-removebg-preview.png" alt="Image 1">
+          </div>
+          <div class="slide-six">
+              <img src="images/spyder2-removebg-preview.png" alt="Image 2">
+          </div>
+          <div class="slide-six">
+              <img src="images/spyder3-removebg-preview.png" alt="Image 3">
+          </div>
+      </div>
+      <button data-bs-target="#carousel-six" class="prev-btn-six">&#10094;</button>
+      <button data-bs-target="#carousel-six" class="next-btn-six">&#10095;</button>
+      <div class="carousel-description-six">
+          <h2>Porsche 718 Spyder RTS</h2>
+          <p>The Porsche 718 Spyder RS is a raw, high-performance convertible, blending track-focused performance with the thrill of open-top driving. It is the last and most extreme version of the 718 series before Porsche transitions to electric sports cars.</p>
+      </div>
+  </div>-->
+  <section style="background-color: black;" class="section service has-bg-image" aria-labelledby="service-label"
+  style="background-image: url('images/serviceimg.png')">
+  <div class="container">
+
+    <p class="section-subtitle :light" id="service-label" style="color: rgb(6, 30, 101); text-shadow: 10px; ;">Our assessments</p>
+
+    <h2 class="h2 section-title" style="color: white;">How our users assess the vehicle</h2>
+
+    <ul class="service-list">
+
+      <li>
+        <div class="service-card">
+
+          <figure class="card-icon">
+            <img src="./assets/images/services-1.png" width="110" height="110" loading="lazy" alt="Engine Repair">
+          </figure>
+
+          <h3 class="h3 card-title" style="color: white;">Engine </h3>
+
+          <p class="card-text">
+            Display of high-performance engine, delivering exceptional horsepower and efficiency.
+          </p>
+
+          <a href="#" class="btn-link">Read more</a>
+
+        </div>
+      </li>
+
+      <li>
+        <div class="service-card">
+
+          <figure class="card-icon">
+            <img src="./assets/images/services-2.png" width="110" height="110" loading="lazy" alt="Brake Repair">
+          </figure>
+
+          <h3 class="h3 card-title" style="color: white;">Top speed</h3>
+
+          <p class="card-text">
+            Ranking thrilling performance with a top speed that pushes the limits
+          </p>
+
+          <a href="#" class="btn-link">Read more</a>
+
+        </div>
+      </li>
+
+      <li>
+        <div class="service-card">
+
+          <figure class="card-icon">
+            <img src="./assets/images/services-3.png" width="110" height="110" loading="lazy" alt="Tire Repair">
+          </figure>
+
+          <h3 class="h3 card-title" style="color: white;">Mileage</h3>
+
+          <p class="card-text">
+            Optimal balance of power and fuel efficiency for long drives.
+          </p>
+
+          <a href="#" class="btn-link">Read more</a>
+
+        </div>
+      </li>
+
+      <li>
+        <div class="service-card">
+
+          <figure class="card-icon">
+            <img src="./assets/images/services-4.png" width="110" height="110" loading="lazy"
+              alt="Battery Repair">
+          </figure>
+
+          <h3 class="h3 card-title" style="color: white;">Acceleration</h3>
+
+          <p class="card-text">
+            Where we go from 0 to 60 in seconds with lightning-fast acceleration.
+          </p>
+
+          <a href="#" class="btn-link">Read more</a>
+
+        </div>
+      </li>
+
+      <li class="service-banner">
+        <img  style="align: center; margin-left:160px;" src="images/serviceimg.png" width="360" height="360" loading="lazy" alt="Red Car"
+          class="move-anim">
+      </li>
+
+      <li>
+        <div class="service-card">
+
+          <figure class="card-icon">
+            <img src="./assets/images/services-6.png" width="110" height="110" loading="lazy"
+              alt="Steering Repair">
+          </figure>
+
+          <h3 class="h3 card-title" style="color: white;">Aerodynamics</h3>
+
+          <p class="card-text">
+            Designs for minimal drag and maximum stability at high speeds.
+          </p>
+
+          <a href="#" class="btn-link">Read more</a>
+
+        </div>
+      </li>
+
+    </ul>
+
+    <a href="#" class="btn">
+      <span class="span">View All assessments</span>
+
+      <span class="material-symbols-rounded"></span>
+    </a>
+
+  </div>
+</section>
+    <footer class="footer">
+
+        <div class="footer-top section">
+          <div class="container">
+    
+            <div class="footer-brand">
+    
+              <a href="#" class="logo">
+                <img src="./assets/images/logo.png" width="128" height="63" alt="autofix home">
+              </a>
+    
+              <p class="footer-text"><h3>
+                Sports cars are high-performance vehicles designed for speed, agility, and an exhilarating driving experience. 🚗💨
+              </h3>
+            </p>
+    
+              <ul class="social-list">
+    
+                <li>
+                  <a href="#" class="social-link">
+                    <img src="assets/images/facebook.svg" alt="facebook">
+                  </a>
+                </li>
+    
+                <li>
+                  <a href="#" class="social-link">
+                    <img src="assets/images/instagram.svg" alt="instagram">
+                  </a>
+                </li>
+    
+                <li>
+                  <a href="#" class="social-link">
+                    <img src="assets/images/twitter.svg" alt="twitter">
+                  </a>
+                </li>
+    
+              </ul>
+    
+            </div>
+    
+            <!-- <ul class="footer-list">
+    
+              <li>
+                <p class="h3">Opening Hours</p>
+              </li>
+    
+              <li>
+                <p class="p">Monday – Saturday</p>
+    
+                <span class="span">12.00 – 14.45</span>
+              </li>
+    
+              <li>
+                <p class="p">Sunday – Thursday</p>
+    
+                <span class="span">17.30 – 00.00</span>
+              </li>
+    
+              <li>
+                <p class="p">Friday – Saturday</p>
+    
+                <span class="span">12.00 – 14.45</span>
+              </li>
+    
+            </ul> -->
+    
+            <ul class="footer-list">
+    
+              <li>
+                <p class="h3">Contact Info</p>
+              </li>
+    
+              <li>
+                <a href="tel:+01234567890" class="footer-link">
+                  <span class="material-symbols-rounded">call</span>
+    
+                  <span class="span">+01 2 3456 7890</span>
+                </a>
+              </li>
+    
+              <li>
+                <a href="mailto:info@carsonly.com" class="footer-link">
+                  <span class="material-symbols-rounded">m</span>
+    
+                  <span class="span">info@carsonly.com</span>
+                </a>
+              </li>
+    
+              <li>
+                <address class="footer-link address">
+                  <span class="material-symbols-rounded">l</span>
+    
+                  <span class="span">VIT Chennai</span>
+                </address>
+              </li>
+    
+            </ul>
+    
+          </div>
+    
+          <img src="./assets/images/footer-shape-3.png" width="637" height="173" loading="lazy" alt="Shape"
+            class="shape shape-3 move-anim">
+    
+        </div>
+    
+        <div class="footer-bottom">
+          <div class="container">
+    
+            <p class="copyright">Made by Ananti & Shubham</p>
+    
+            <img src="./assets/images/footer-shape-2.png" width="778" height="335" loading="lazy" alt="Shape"
+              class="shape shape-2">
+    
+            <img src="images/footer1.png" width="805" height="652" loading="lazy" alt="Red Car"
+              class="shape shape-1 move-anim">
+    
+          </div>
+        </div>
+    
+      </footer>
+
+
+    <!--<img itemprop="image" loading="lazy" class=" fit-contain" src="https://mclaren.scene7.com/is/image/mclaren/mclaren_automotive_750s_front_right_profile:crop-2x1?fmt=png-alpha&wid=1940&hei=970">-->
+    <script src="script.js"></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggestion Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    padding: 20px;
+    background: repeating-linear-gradient(
+        to right, transparent 0 150px, rgba(19, 19, 19, 0.543) 150px 151px
+    ),
+    repeating-linear-gradient(
+        to bottom, transparent 0 150px, rgba(16, 16, 16, 0.436) 150px 151px
+    ),
+    linear-gradient(to right, #171515, #131111cc),
+    url('bg2.jpg') no-repeat center center/cover;
+}
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #2222228c;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px #000312;
+            text-align: center;
+            border: 2px solid #0a1964;
+        }
+
+        h2 {
+            font-weight: 600;
+            color: #1a2c86;
+            margin-bottom: 10px;
+        }
+
+        .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3a3737;
+    padding: 15px 30px;
+    text-align:left;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff6600;
+}
+
+/* Responsive Navigation */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+}
+
+        p {
+            color: #bbb;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #444444a8;
+            background: #333;
+            color: #fff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #0a1964;
+            outline: none;
+            box-shadow: 0px 0px 8px rgba(255, 26, 26, 0.6);
+        }
+
+        button {
+            width: 100%;
+            background: #0a1964;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #cc0000;
+            box-shadow: 0px 0px 10px rgba(255, 26, 26, 0.6);
+        }
+
+        .thank-you {
+            display: none;
+            padding: 15px;
+            color: #0f0;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Submit Your Car Image and Description</h2>
+        <p>Share your favorite car image and a brief description with us.</p>
+
+        <form id="suggestionForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Your Name (optional)">
+            </div>
+            <div class="form-group">
+                <input type="file" id="carImage" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <textarea id="description" rows="4" placeholder="Car Description" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="thank-you" id="thankYouMessage">Thank you for submitting your car image and description! 😊</div>
+    </div>
+
+    <!-- Firebase SDK v8 -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <script type="module" src="suggestion.js"></script>
+</body>
+</html>
