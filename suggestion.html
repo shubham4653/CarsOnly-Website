@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suggestion Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
+    <link rel="stylesheet" href="style.css" />
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -53,6 +54,10 @@
     background-color: #3a3737;
     padding: 15px 30px;
     text-align:left;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .logo {
@@ -78,7 +83,7 @@
 }
 
 .nav-links a:hover {
-    color: #ff6600;
+    color: #00a2ff;
 }
 
 /* Responsive Navigation */
@@ -154,6 +159,18 @@
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">CARS ONLY</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="gallery/gallery.html">Gallery</a></li>
+            <li><a href="suggestion.html" style="color: #0088ff;" >Suggestion</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="news.html">News</a></li> 
+            <li><a href="comparison.html">Comparison</a></li>
+        </ul>
+    </nav>
     <div class="container">
         <h2>Submit Your Car Image and Description</h2>
         <p>Share your favorite car image and a brief description with us.</p>

@@ -1,15 +1,8 @@
+
 const userEmail = localStorage.getItem("userEmail");
 
 const loginLink = document.getElementById("loginLink");
 const logoutLink = document.getElementById("logoutLink");
-
-if (logoutLink) {
-  logoutLink.addEventListener("click", function (e) {
-    e.preventDefault();
-    localStorage.removeItem("userEmail");
-    window.location.href = "signupandlogin.html";
-  });
-}
 
 if (userEmail) {
   if (loginLink) {
@@ -103,7 +96,6 @@ function setupCarousel(carouselClass, slideClass, prevBtnClass, nextBtnClass) {
     updateIndicators();
 }
 
-
 // Initialize carousels
 setupCarousel('carousel', 'slide', 'prev-btn', 'next-btn');
 setupCarousel('carousel-two', 'slide-two', 'prev-btn-two', 'next-btn-two');
@@ -112,7 +104,49 @@ setupCarousel('carousel-four', 'slide-four', 'prev-btn-four', 'next-btn-four');
 setupCarousel('carousel-five', 'slide-five', 'prev-btn-five', 'next-btn-five');
 setupCarousel('carousel-six', 'slide-six', 'prev-btn-six', 'next-btn-six');
 
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks = document.querySelector('.nav-links');
+  const indicator = document.querySelector('.nav-indicator');
+  const links = navLinks.querySelectorAll('li a');
 
-  // Check if user is logged in
+  let activeLink = navLinks.querySelector('a.active') || links[0];
+
+  function updateIndicator(element) {
+    const rect = element.getBoundingClientRect();
+    const navRect = navLinks.getBoundingClientRect();
+    indicator.style.width = `${rect.width}px`;
+    indicator.style.left = `${rect.left - navRect.left}px`;
+  }
+
+  // Initialize indicator position
+  updateIndicator(activeLink);
+
+  links.forEach(link => {
+    link.addEventListener('mouseenter', (e) => {
+      updateIndicator(e.target);
+    });
+  });
+
+  navLinks.addEventListener('mouseleave', () => {
+    updateIndicator(activeLink);
+  });
+
+  // Additional crazy cool animation: bounce effect on indicator
+  let bounceTimeout;
+  function bounceIndicator() {
+    indicator.style.transition = 'transform 0.3s ease';
+    indicator.style.transform = 'translateY(-6px)';
+    clearTimeout(bounceTimeout);
+    bounceTimeout = setTimeout(() => {
+      indicator.style.transform = 'translateY(0)';
+    }, 300);
+  }
+
+  links.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      bounceIndicator();
+    });
+  });
+});
   
 

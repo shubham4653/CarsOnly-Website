@@ -428,21 +428,73 @@ header .author img{
 .nav-links {
     list-style: none;
     display: flex;
+    position: relative; /* For indicator positioning */
 }
 
 .nav-links li {
     margin: 0 15px;
+    position: relative;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: white;
+    color: #0088ff;
     font-size: 18px;
     transition: 0.3s;
+    padding: 5px 0;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
 }
 
 .nav-links a:hover {
-    color: #ff6600;
+    color: #00d5ff;
+}
+
+.nav-links a.active {
+    color: #005eff;
+    font-weight: 700;
+    text-shadow: 0 0 8px #00c3ff, 0 0 12px #00aeff, 0 0 16px #00d0ff;
+}
+
+/* Liquid Navigation Indicator */
+.nav-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 6px;
+    width: 0;
+    background: linear-gradient(90deg, #0055ff, #00a6ff, #0055ff);
+    border-radius: 12px;
+    box-shadow: 0 0 8px 2px rgba(0, 102, 255, 0.7);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Nav links hover effect */
+.nav-links a {
+    text-decoration: none;
+    color: #0088ff;
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 5px 0;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-links a:hover {
+    color: #0088ff;
+    transform: scale(1.1) translateY(-3px);
+    text-shadow: 0 0 8px #0088ff;
+}
+
+/* Nav links active effect */
+.nav-links a.active {
+    color: #0088ff;
+    font-weight: 700;
+    text-shadow: 0 0 10px #0088ff;
 }
 
 /* Responsive Navigation */
