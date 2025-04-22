@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Car News - Cars Only</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .news-container {
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+        .news-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .news-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .news-item h3 {
+            margin: 10px 0;
+        }
+        .news-item p {
+            color: #666;
+        }
+        .news-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">CARS ONLY</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="gallery/gallery.html">Gallery</a></li>
+            <li><a href="suggestion.html">Suggestion</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="news.html" class="active">News</a></li> 
+            <li><a href="comparison.html" class="active">Comparison</a></li>
+            <li><a id="loginLink" href="signupandlogin.html">Login/Signup</a></li>
+            <li><a id="logoutLink" href="#" style="display:none;">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main class="news-container">
+        <h1>Latest Car News</h1>
+        <div id="newsContent"></div>
+        <div id="errorMessage" class="error-message"></div>
+    </main>
+
+    <script>
+        const API_KEY = 'pub_82097cf047d6c83f4ff118a0a52f0a950a427';
+        const URL = `https://newsdata.io/api/1/latest?apikey=${API_KEY}&q=supercars&language=en`;
+
+        async function fetchCarNews() {
+            const newsContainer = document.getElementById('newsContent');
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = '';
+            newsContainer.innerHTML = '';
+
+            try {
+                const response = await fetch(URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                if (data.results && data.results.length > 0) {
+                    data.results.forEach(article => {
+                        const newsItem = document.createElement('div');
+                        newsItem.classList.add('news-item');
+
+                        if (article.image_url) {
+                            const img = document.createElement('img');
+                            img.src = article.image_url;
+                            newsItem.appendChild(img);
+                        }
+
+                        const title = document.createElement('h3');
+                        title.textContent = article.title;
+                        newsItem.appendChild(title);
+
+                        const description = document.createElement('p');
+                        description.textContent = article.description || 'No description available.';
+                        newsItem.appendChild(description);
+
+                        const readMore = document.createElement('a');
+                        readMore.href = article.link;
+                        readMore.target = '_blank';
+                        readMore.textContent = 'Read more';
+                        newsItem.appendChild(readMore);
+
+                        newsContainer.appendChild(newsItem);
+                    });
+                } else {
+                    newsContainer.innerHTML = '<p>No car news available at the moment.</p>';
+                }
+            } catch (error) {
+                errorMessage.textContent = `Failed to load news: ${error.message}`;
+            }
+        }
+
+        window.onload = fetchCarNews;
+    </script>
+</body>
+</html>
