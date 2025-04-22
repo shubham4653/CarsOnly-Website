@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Assessment</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  color: rgb(252, 250, 250);
+  margin: 0;
+  padding: 40px 0;
+  background: url('bg3.jpg') no-repeat center center/cover;
+}
+
+.container-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container {
+  perspective: 1000px;
+  width: 45%;
+  min-width: 300px;
+  height: 300px; /* Ensure consistent height for the container */
+}
+
+.flip-card {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%; /* Ensure both sides have the same height */
+  backface-visibility: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0 15px #111fb2cc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.flip-card-front {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.flip-card-back {
+  background: rgba(0, 0, 0, 0.8);
+  transform: rotateY(180deg);
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Hide front text when flipped */
+.flip-card-inner:hover .flip-card-front {
+  opacity: 0;
+}
+
+.text-content h1 {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+p {
+  font-size: 16px;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  word-break: break-word;
+}
+
+.typing-text {
+  font-size: 16px;
+  color: #ffffff;
+  overflow: hidden;
+  border-right: 3px solid #fff;
+  animation: blink 0.7s step-end infinite;
+  white-space: normal;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container-wrapper">
+    <div class="container">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="text-content">
+              <h1>Engine</h1>
+              <p id="typingText1" class="typing-text"></p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p><strong>Best Engines:</strong> V8, Turbocharged, Electric</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="text-content">
+              <h1>Top Speed</h1>
+              <p id="typingText2" class="typing-text"></p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p><strong>Best Top Speed:</strong> 330 mph (SSC Tuatara)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="text-content">
+              <h1>Mileage</h1>
+              <p id="typingText3" class="typing-text"></p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p><strong>Best Mileage:</strong> 84 MPG (Toyota Prius)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="text-content">
+              <h1>Acceleration</h1>
+              <p id="typingText4" class="typing-text"></p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p><strong>Best Acceleration:</strong> 0-60 mph in 1.9 sec (Tesla Roadster)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="text-content">
+              <h1>Aerodynamics</h1>
+              <p id="typingText5" class="typing-text"></p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p><strong>Best Aerodynamics:</strong> Koenigsegg Agera RS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 10px;">
+    <a href="index.html" style="color: #ddd; font-size: 1.4em; text-decoration: underline; margin-top:15px">Back to homepage</a>
+  </div>
+  <script>
+    const texts = [
+    "The engine is the heart of every car, converting fuel into mechanical energy to power the vehicle. It comprises various components like cylinders, pistons, and the crankshaft, all working together to ensure smooth operation. Modern engines come in various configurations, such as V8, turbocharged, and electric, each offering unique advantages in performance, efficiency, and emissions.",
+      "Top speed is often the most thrilling and defining feature of performance cars. It refers to the maximum velocity a car can reach under ideal conditions, such as on a closed track or highway. While high-performance cars like the Bugatti Chiron and SSC Tuatara boast top speeds of over 300 mph, top speed isn’t always about sheer numbers. ",
+      "Mileage, or fuel efficiency, plays an essential role in a car's running cost and environmental impact. It determines how far a car can travel on a given amount of fuel, often measured in miles per gallon (MPG) or liters per 100 kilometers (L/100 km).  Mileage isn't just about cutting down fuel expenses—it's also a key factor in reducing your carbon footprint.",
+      "Acceleration is a critical performance measure, indicating how quickly a car can reach a specific speed from a standstill, typically 0-60 mph or 0-100 km/h.  Acceleration is not only important for racing enthusiasts but also for everyday driving, helping you make quick lane changes, merge onto highways, and maneuver through city traffic with ease.",
+      "Aerodynamics plays a significant role in a car’s overall performance by reducing air resistance, improving stability, and increasing fuel efficiency. The shape of the vehicle, its body design, and the inclusion of aerodynamic features like spoilers, diffusers, and active air vents all contribute to how air flows around the car. A well-designed aerodynamic profile can improve a car's top speed, reduce drag, and enhance fuel efficiency."
+    ];
+
+    const smallWords = ["for", "and", "by", "a", "of", "to", "in"];
+    const containers = [1, 2, 3, 4, 5];
+
+    containers.forEach((idNum, idx) => {
+      const words = texts[idx].split(" ");
+      let index = 0;
+      let lineLength = 0;
+      const typingElement = document.getElementById(`typingText${idNum}`);
+
+      function typeEffect() {
+  if (index < words.length) {
+    let word = words[index];
+    if (index > 0 && smallWords.includes(word.toLowerCase())) {
+      word = "&nbsp;" + word;
+    }
+
+    typingElement.innerHTML += word + " ";
+    index++;
+
+    setTimeout(typeEffect, 20 + idx * 10);
+  } else {
+    typingElement.style.borderRight = "none";
+  }
+}
+
+
+      setTimeout(typeEffect, idx * 300);
+    });
+  </script>
+
+</body>
+</html>

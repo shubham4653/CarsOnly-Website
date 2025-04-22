@@ -3,6 +3,13 @@ const userEmail = localStorage.getItem("userEmail");
 const loginLink = document.getElementById("loginLink");
 const logoutLink = document.getElementById("logoutLink");
 
+if (logoutLink) {
+  logoutLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    localStorage.removeItem("userEmail");
+    window.location.href = "signupandlogin.html";
+  });
+}
 
 if (userEmail) {
   if (loginLink) {
