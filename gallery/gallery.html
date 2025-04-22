@@ -25,14 +25,22 @@
     <h1>Cars Only Gallery</h1>
     <p>Explore stunning car images</p>
     <div id="loadingSpinner" class="spinner" style="display: none;"></div>
-    <button id="slideshowBtn" onclick="startRandomSlideshow()">
-        🏁 Start Slideshow
-    </button>
+    <div class="button-group" style="display: flex; gap: 10px; align-items: center;">
+        <button id="slideshowBtn" class="btn slideshow-btn" onclick="startRandomSlideshow()">
+            🏁 Start Slideshow
+        </button>
+        <button id="likedByYouBtn" class="btn slideshow-btn">Liked by You</button>
+    </div>
     <audio id="engineSound" src="car-engine.mp3"></audio>
     
 
     <div class="gallery" id="gallery">
         <!-- Images will be loaded dynamically here -->
+    </div>
+
+    <div id="likedSection" style="display:none; margin-top: 20px;">
+        <h2>Images Liked by You</h2>
+        <div id="likedImagesContainer" class="gallery"></div>
     </div>
 
     <!-- Fullscreen Image Modal -->

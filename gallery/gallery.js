@@ -167,9 +167,32 @@ document.getElementById("gallery").addEventListener("click", function(event) {
     
 });
 
+// Reference to likes in Firebase
+const likesRef = firebase.database().ref("likes");
+
 // Like toggle function
 function toggleLike(element) {
     element.classList.toggle("liked");
+
+    const carCard = element.closest('.car-card');
+    let imageSrc = "";
+    let isUnsplash = false;
+
+    // Determine if image is from Unsplash or user-submitted
+    const imgElement = carCard.querySelector("img");
+    if (imgElement) {
+        if (imgElement.src.startsWith("data:image")) {
+            // User-submitted image (base64)
+            imageSrc = imgElement.src;
+            isUnsplash = false;
+        } else {
+            // Unsplash image (URL)
+            imageSrc = imgElement.getAttribute("data-full") || imgElement.src;
+            isUnsplash = true;
+        }
+    }
+
+    const likedSection = document.getElementById("likedSection");
 
     if (element.classList.contains("liked")) {
         element.textContent = "❤️"; // Liked (solid heart)
@@ -178,10 +201,160 @@ function toggleLike(element) {
         element.style.animation = "none";
         void element.offsetWidth;  // Force reflow (trick to restart animation)
         element.style.animation = "pop 0.3s ease-in-out";
+
+        // Store like in Firebase under current user
+        if (userEmail && imageSrc) {
+            const userLikesRef = likesRef.child(userEmail.replace('.', ','));
+            // Push new like entry and get the key
+            const newLikeRef = userLikesRef.push();
+            newLikeRef.set({
+                src: imageSrc,
+                isUnsplash: isUnsplash
+            });
+            // Store the Firebase key in the like button for future unlikes
+            element.dataset.likeKey = newLikeRef.key;
+
+            // Add liked image to liked section UI
+            if (likedSection) {
+                const likedCard = document.createElement("div");
+                likedCard.classList.add("car-card");
+                likedCard.dataset.likeKey = newLikeRef.key;
+
+                likedCard.innerHTML = `
+                    <img src="${imageSrc}" alt="Liked Image">
+                    <div class="car-info">
+                        <span class="like-btn liked" data-like-key="${newLikeRef.key}">❤️</span>
+                    </div>
+                `;
+
+                likedSection.appendChild(likedCard);
+            }
+        }
     } else {
         element.textContent = "🤍"; // Unliked (outline heart)
+
+        // Remove like from Firebase using stored key
+        if (userEmail && element.dataset.likeKey) {
+            const userLikesRef = likesRef.child(userEmail.replace('.', ','));
+            userLikesRef.child(element.dataset.likeKey).remove();
+            // Remove liked image from liked section UI
+            if (likedSection) {
+                const likedCards = likedSection.querySelectorAll(`.car-card[data-like-key="${element.dataset.likeKey}"]`);
+                likedCards.forEach(card => card.remove());
+            }
+            delete element.dataset.likeKey;
+        }
     }
 }
+
+// Load liked images from Firebase and display in liked section
+function loadLikedImages() {
+    if (!userEmail) return;
+
+    const likedSection = document.getElementById("likedSection");
+    if (!likedSection) return;
+
+    const userLikesRef = likesRef.child(userEmail.replace('.', ','));
+    userLikesRef.once('value').then(snapshot => {
+        likedSection.innerHTML = ""; // Clear existing
+
+        const likes = snapshot.val();
+        if (!likes) {
+            likedSection.innerHTML = "<p>No liked images yet.</p>";
+            return;
+        }
+
+        Object.values(likes).forEach(like => {
+            const carCard = document.createElement("div");
+            carCard.classList.add("car-card");
+
+            let imgSrc = like.src;
+            let altText = "Liked Image";
+
+            carCard.innerHTML = `
+                <img src="${imgSrc}" alt="${altText}">
+                <div class="car-info">
+                    <span class="like-btn liked">❤️</span>
+                </div>
+            `;
+
+            likedSection.appendChild(carCard);
+        });
+    });
+}
+
+const likedByYouBtn = document.getElementById("likedByYouBtn");
+const likedSection = document.getElementById("likedSection");
+const likedImagesContainer = document.getElementById("likedImagesContainer");
+const galleryContainer = document.getElementById("gallery");
+
+// Function to clear liked images container
+function clearLikedImages() {
+    likedImagesContainer.innerHTML = "";
+}
+
+// Function to create a car card element for liked images
+function createLikedCarCard(like, likeKey) {
+    const carCard = document.createElement("div");
+    carCard.classList.add("car-card");
+    carCard.dataset.likeKey = likeKey;
+
+    carCard.innerHTML = `
+        <img src="${like.src}" alt="Liked Image">
+        <div class="car-info">
+            <span class="like-btn liked" data-like-key="${likeKey}">❤️</span>
+        </div>
+    `;
+
+    // Add event listener for unlike from liked section
+    const likeBtn = carCard.querySelector(".like-btn");
+    likeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleLike(likeBtn);
+    });
+
+    return carCard;
+}
+
+// Load liked images from Firebase and display in liked section
+function loadLikedImages() {
+    if (!userEmail) return;
+
+    if (!likedSection || !likedImagesContainer) return;
+
+    const userLikesRef = likesRef.child(userEmail.replace('.', ','));
+    userLikesRef.once('value').then(snapshot => {
+        clearLikedImages();
+
+        const likes = snapshot.val();
+        if (!likes) {
+            likedImagesContainer.innerHTML = "<p>No liked images yet.</p>";
+            return;
+        }
+
+        Object.entries(likes).forEach(([key, like]) => {
+            const carCard = createLikedCarCard(like, key);
+            likedImagesContainer.appendChild(carCard);
+        });
+    });
+}
+
+// Toggle display between gallery and liked section
+likedByYouBtn.addEventListener("click", () => {
+    if (likedSection.style.display === "none") {
+        likedSection.style.display = "block";
+        galleryContainer.style.display = "none";
+        loadLikedImages();
+    } else {
+        likedSection.style.display = "none";
+        galleryContainer.style.display = "flex";
+    }
+});
+
+// Load liked images on page load
+window.addEventListener("load", () => {
+    loadLikedImages();
+});
 
 // Fullscreen Image Modal Functions
 function openModal(imageSrc) {
