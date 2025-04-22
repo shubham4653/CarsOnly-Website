@@ -4,17 +4,6 @@ const userEmail = localStorage.getItem("userEmail");
 const loginLink = document.getElementById("loginLink");
 const logoutLink = document.getElementById("logoutLink");
 
-<<<<<<< HEAD
-=======
-if (logoutLink) {
-  logoutLink.addEventListener("click", function (e) {
-    e.preventDefault();
-    localStorage.removeItem("userEmail");
-    window.location.href = "signupandlogin.html";
-  });
-}
-
->>>>>>> 72d8f292472ab0b9d38a91d31a02c453ab87d34e
 if (userEmail) {
   if (loginLink) {
     loginLink.style.display = "none";
@@ -115,7 +104,6 @@ setupCarousel('carousel-four', 'slide-four', 'prev-btn-four', 'next-btn-four');
 setupCarousel('carousel-five', 'slide-five', 'prev-btn-five', 'next-btn-five');
 setupCarousel('carousel-six', 'slide-six', 'prev-btn-six', 'next-btn-six');
 
-// Liquid Navigation Menu Indicator
 document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelector('.nav-links');
   const indicator = document.querySelector('.nav-indicator');
@@ -141,6 +129,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   navLinks.addEventListener('mouseleave', () => {
     updateIndicator(activeLink);
+  });
+
+  // Additional crazy cool animation: bounce effect on indicator
+  let bounceTimeout;
+  function bounceIndicator() {
+    indicator.style.transition = 'transform 0.3s ease';
+    indicator.style.transform = 'translateY(-6px)';
+    clearTimeout(bounceTimeout);
+    bounceTimeout = setTimeout(() => {
+      indicator.style.transform = 'translateY(0)';
+    }, 300);
+  }
+
+  links.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      bounceIndicator();
+    });
   });
 });
   
