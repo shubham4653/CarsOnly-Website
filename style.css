@@ -428,10 +428,12 @@ header .author img{
 .nav-links {
     list-style: none;
     display: flex;
+    position: relative; /* For indicator positioning */
 }
 
 .nav-links li {
     margin: 0 15px;
+    position: relative;
 }
 
 .nav-links a {
@@ -439,10 +441,28 @@ header .author img{
     color: white;
     font-size: 18px;
     transition: 0.3s;
+    padding: 5px 0;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
 }
 
 .nav-links a:hover {
     color: #ff6600;
+}
+
+/* Liquid Navigation Indicator */
+.nav-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 0;
+    background-color: #ff6600;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* Responsive Navigation */
