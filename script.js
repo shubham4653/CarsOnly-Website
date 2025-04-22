@@ -4,6 +4,17 @@ const userEmail = localStorage.getItem("userEmail");
 const loginLink = document.getElementById("loginLink");
 const logoutLink = document.getElementById("logoutLink");
 
+<<<<<<< HEAD
+=======
+if (logoutLink) {
+  logoutLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    localStorage.removeItem("userEmail");
+    window.location.href = "signupandlogin.html";
+  });
+}
+
+>>>>>>> 72d8f292472ab0b9d38a91d31a02c453ab87d34e
 if (userEmail) {
   if (loginLink) {
     loginLink.style.display = "none";
