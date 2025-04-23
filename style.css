@@ -571,13 +571,7 @@ header .author img{
 .contact-us a:hover {
     text-decoration: underline;
 }
-/*-----------------------------------*\
-  #style.css
-\*-----------------------------------*/
 
-/**
- * copyright 2022 codewithsadee
- */
 
 
 
@@ -696,12 +690,6 @@ header .author img{
     scroll-behavior: smooth;
   }
   
-  /* body {
-    background-color: var(--white);
-    color: var(--sonic-silver);
-    font-size: 1.6rem;
-    line-height: 1.5;
-  } */
   
   :focus-visible { outline-offset: 4px; }
   
@@ -906,62 +894,7 @@ header .author img{
   }
   
   .logo img { width: 100px; }
-  
-  /* .nav-toggle-icon {
-    width: 30px;
-    height: 2px;
-    background-color: var(--white);
-    transition: var(--transition);
-  }
-  
-  .nav-toggle-icon:not(:last-child) { margin-block-end: 7px; }
-  
-  .nav-toggle-btn.active .icon-2 {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  
-  .nav-toggle-btn.active .icon-1 { transform: rotate(45deg) translate(8px, 8px); }
-  
-  .nav-toggle-btn.active .icon-3 { transform: rotate(-45deg) translate(4px, -4px); }
-  
-  .navbar {
-    position: absolute;
-    top: 100px;
-    right: 30px;
-    background-color: var(--international-orange-engineering);
-    min-width: max-content;
-    width: 30%;
-    transform: translateY(20px);
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.25s var(--cubic-out);
-    z-index: 2;
-  }
-  
-  .navbar.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-    transition-duration: 0.5s;
-  }
-  
-  .navbar-link {
-    font-family: var(--ff-chakra-petch);
-    font-size: var(--fs-5);
-    text-transform: uppercase;
-    color: var(--white);
-    padding: 10px 20px;
-    transition: var(--transition);
-  }
-  
-  .navbar-link:is(:hover, :focus-visible) {
-    background-color: var(--white);
-    color: var(--international-orange-engineering);
-  } */
-  
-  
-  
+
   
   /*-----------------------------------*\
     #HERO
@@ -1462,55 +1395,7 @@ header .author img{
   
   
   
-    /**
-     * HEADER
-     */
-/*   
-    .nav-toggle-btn { display: none; }
-  
-    .header .container { gap: 30px; }
-  
-    .navbar,
-    .navbar.active {
-      all: unset;
-      display: block;
-      margin-inline-start: auto;
-    }
-  
-    .navbar-list { display: flex; }
-  
-    .navbar-link {
-      position: relative;
-      font-size: unset;
-    }
-  
-    .navbar-link:is(:hover, :focus-visible) {
-      background: none;
-      color: var(--white);
-    }
-  
-    .navbar-link::after {
-      content: url("../images/nav-before-img.png");
-      position: absolute;
-      bottom: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-    }
-  
-    .navbar-link:is(:hover, :focus-visible)::after { opacity: 1; }
-  
-    .header .btn {
-      display: flex;
-      padding: 12px 24px;
-      font-size: var(--fs-5);
-    }
-   */
-  
-  
-    /**
-     * HERO
-     */
+    
   
     .hero {
       text-align: left;
