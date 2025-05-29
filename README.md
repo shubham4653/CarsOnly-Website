@@ -42,8 +42,8 @@ Contributions are welcome! If you find a bug or want to improve functionality, f
 This project is open source and available under the MIT License.
 
 ## 👨‍💻 Author
-#Ananti
-#Shubham Awari
+Ananti , 
+Shubham Awari
 
 
 Made with ❤️ for car lovers.
