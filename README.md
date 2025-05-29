@@ -13,7 +13,7 @@ CarsOnly is a dynamic web application that showcases a modern and responsive gal
 - ❤️ Like button for each car image
 - 🔁 Infinite scrolling for seamless browsing
 - 📱 Responsive and modern UI
-- 🌙 Dark/light theme toggle *(if implemented)*
+- 🌙 Dark/light theme toggle 
 
 ## 🛠️ Tech Stack
 
@@ -42,8 +42,8 @@ Contributions are welcome! If you find a bug or want to improve functionality, f
 This project is open source and available under the MIT License.
 
 ## 👨‍💻 Author
-Ananti
-Shubham Awari
+#Ananti
+#Shubham Awari
 
 
 Made with ❤️ for car lovers.
