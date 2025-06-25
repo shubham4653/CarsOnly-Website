@@ -35,7 +35,7 @@ CarsOnly is a dynamic web application that showcases a modern and responsive gal
 git clone https://github.com/shubham4653/CarsOnly-Website.git
 cd CarsOnly-Website
 ```
-##🙌 Contributing
+## 🙌 Contributing
 Contributions are welcome! If you find a bug or want to improve functionality, feel free to open an issue or submit a pull request.
 
 ## 📄 License
